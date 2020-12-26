@@ -76,3 +76,7 @@ body {
   border: none;
   flex-grow: 1;
 }
+.message {
+  color: white;
+  list-style: none;
+}

@@ -29,6 +29,17 @@ navigator.mediaDevices.getUserMedia({
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
   })
+  /* Listen for user message when clicking the Enter key */
+  let text = $('input')
+  $('html').keydown((e) => {
+    if (e.which == 13 && text.val().length !== 0) {
+      socket.emit('message', text.val())
+      text.val('')
+    }
+  })
+  socket.on('createMessage', message => {
+    $('ul').append(`<li class="message"><b>user</b><br>${message}</li>`)
+  })
 })
 
 socket.on('user-disconnected', userId => {
@@ -61,15 +72,3 @@ function connectToNewUser(userId, stream) {
 
   peers[userId] = call
 }
-
-/* Listen for user message when clicking the Enter key */
-let text = $('input')
-$('html').keydown((e) => {
-  if (e.which == 13 && text.val().length !== 0) {
-    socket.emit('message', text.val())
-    text.val('')
-  }
-})
-socket.on('createMessage', message => {
-  console.log(`from server: ${message}`)
-})
