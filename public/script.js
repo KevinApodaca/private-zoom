@@ -76,6 +76,6 @@ function connectToNewUser(userId, stream) {
 
 /* Function to scroll automatically when too many messages */
 const scrollToBottom = () => {
-  let currDiv = $('.main__chat_window')
-  currDiv.scrollTop(d.prop("'scrollHeight"))
+  let d = $('.main__chat_window')
+  d.scrollTop(d.prop('scrollHeight'))
 }
