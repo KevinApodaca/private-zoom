@@ -11,10 +11,12 @@ const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
 
+let myVideoStream
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
 }).then(stream => {
+  myVideoStream = stream
   addVideoStream(myVideo, stream)
 
   myPeer.on('call', call => {
@@ -78,4 +80,58 @@ function connectToNewUser(userId, stream) {
 const scrollToBottom = () => {
   let d = $('.main__chat_window')
   d.scrollTop(d.prop('scrollHeight'))
+}
+
+/* Function to toggle microphone */
+const toggleMute = () => {
+  const toggled = myVideoStream.getAudioTracks()[0].enabled
+  if (toggled) {
+    myVideoStream.getAudioTracks()[0].enabled = false
+    toggleUnmuteButton()
+  } else {
+    toggleMuteButton()
+    myVideoStream.getAudioTracks()[0].enabled = true
+  }
+}
+
+const toggleMuteButton = () => {
+  const html = `
+  <i class="fas fa-microphone"></i>
+  <span>Mute</span>
+  `
+  document.querySelector('.main__mute_button').innerHTML = html
+}
+const toggleUnmuteButton = () => {
+  const html = `
+  <i class="unmute fas fa-microphone-slash"></i>
+  <span>Unmute</span>
+  `
+  document.querySelector('.main__mute_button').innerHTML = html
+}
+
+/* Function to toggle camera */
+const toggleVideo = () => {
+  let toggled = myVideoStream.getVideoTracks()[0].enabled
+  if (toggled) {
+    myVideoStream.getVideoTracks()[0].enabled = false
+    toggleVideoOn()
+  } else {
+    toggleVideoOff()
+    myVideoStream.getVideoTracks()[0].enabled = true
+  }
+}
+
+const toggleVideoOff = () => {
+  const html = `
+  <i class="fas fa-video"></i>
+  <span>Stop Video</span>
+  `
+  document.querySelector('.main__video_button').innerHTML = html
+}
+const toggleVideoOn = () => {
+  const html = `
+  <i class="hide_video fas fa-video-slash"></i>
+  <span>Play Video</span>
+  `
+  document.querySelector('.main__video_button').innerHTML = html
 }
