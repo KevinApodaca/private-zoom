@@ -3,7 +3,7 @@ const videoGrid = document.getElementById('video-grid')
 /* Setup PeerJS library connections */
 const myPeer = new Peer(undefined, {
   host: '/',
-  port: '3001'
+  port: '443'
 })
 
 /* Render our own video and mute ourselves, but not for others. */
