@@ -39,6 +39,7 @@ navigator.mediaDevices.getUserMedia({
   })
   socket.on('createMessage', message => {
     $('ul').append(`<li class="message"><b>user</b><br>${message}</li>`)
+    scrollToBottom()
   })
 })
 
@@ -71,4 +72,10 @@ function connectToNewUser(userId, stream) {
   })
 
   peers[userId] = call
+}
+
+/* Function to scroll automatically when too many messages */
+const scrollToBottom = () => {
+  let currDiv = $('.main__chat_window')
+  currDiv.scrollTop(d.prop("'scrollHeight"))
 }
