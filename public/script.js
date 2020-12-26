@@ -108,3 +108,30 @@ const toggleUnmuteButton = () => {
   `
   document.querySelector('.main__mute_button').innerHTML = html
 }
+
+/* Function to toggle camera */
+const toggleVideo = () => {
+  let toggled = myVideoStream.getVideoTracks()[0].enabled
+  if (toggled) {
+    myVideoStream.getVideoTracks()[0].enabled = false
+    toggleVideoOn()
+  } else {
+    toggleVideoOff()
+    myVideoStream.getVideoTracks()[0].enabled = true
+  }
+}
+
+const toggleVideoOff = () => {
+  const html = `
+  <i class="fas fa-video"></i>
+  <span>Stop Video</span>
+  `
+  document.querySelector('.main__video_button').innerHTML = html
+}
+const toggleVideoOn = () => {
+  const html = `
+  <i class="hide_video fas fa-video-slash"></i>
+  <span>Play Video</span>
+  `
+  document.querySelector('.main__video_button').innerHTML = html
+}
