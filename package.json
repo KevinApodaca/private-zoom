@@ -4,8 +4,8 @@
   "description": "It's zoom, without the privacy issues 🕵️",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "dev": "nodemon server",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
