@@ -61,3 +61,13 @@ function connectToNewUser(userId, stream) {
 
   peers[userId] = call
 }
+
+/* Listen for user message when clicking the Enter key */
+let text = $('input')
+$('html').keydown((e) => {
+  if (e.which == 13 && text.val().length !== 0) {
+    console.log(text.val())
+    socket.emit('message', text.val())
+    text.val('')
+  }
+})
