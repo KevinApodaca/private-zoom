@@ -46,6 +46,8 @@ body {
   display: flex;
   flex-direction: column;
 }
+.main__controls__button i {font-size: 24px;}
+.leave_meeting_button {color: #EB534B;}
 .main__right {
   flex: 0.2;
 }
