@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/KevinApodaca/private-zoom#readme",
   "dependencies": {
+    "bulma": "^0.9.1",
     "chalk": "^2.4.2",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
