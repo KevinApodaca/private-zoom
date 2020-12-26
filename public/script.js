@@ -82,7 +82,7 @@ const scrollToBottom = () => {
   d.scrollTop(d.prop('scrollHeight'))
 }
 
-/* Function to toggle camera */
+/* Function to toggle microphone */
 const toggleMute = () => {
   const toggled = myVideoStream.getAudioTracks()[0].enabled
   if (toggled) {
